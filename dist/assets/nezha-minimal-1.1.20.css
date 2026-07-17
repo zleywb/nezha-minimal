@@ -1293,7 +1293,6 @@ a {
   }
 }
 
-/* 国家汇总条：有限显示 + hover 内容切换向下展开（无单独下拉条） */
 .ak-country-summary {
   position: relative;
   padding: 0.58rem 0.72rem;
@@ -1347,7 +1346,6 @@ a {
   display: flex;
 }
 
-/* Hover 时轻微视觉扩展效果，渐变阴影表示展开 */
 .ak-country-summary:hover {
   box-shadow: 0 4px 12px rgba(10, 148, 242, 0.12);
 }
@@ -1358,7 +1356,6 @@ a {
 }
 
 
-/* v6 flat pure color override */
 :root {
   --ak-bg:#ffffff !important;
   --ak-surface:#ffffff !important;
@@ -1368,7 +1365,6 @@ a {
   --ak-inset-soft:#ffffff !important;
 }
 
-/* 全局去除视觉效果 */
 * {
   box-shadow:none !important;
   text-shadow:none !important;
@@ -1379,7 +1375,6 @@ html {
   background:#ffffff !important;
 }
 
-/* 顶部导航、底部 */
 header,
 footer,
 nav,
@@ -1390,7 +1385,6 @@ nav,
   box-shadow:none !important;
 }
 
-/* 首页汇总条、卡片 */
 .ak-card,
 .ak-summary-bar,
 .ak-stat-card,
@@ -1400,14 +1394,12 @@ nav,
   box-shadow:none !important;
 }
 
-/* VPS卡片 */
 [class*="card"],
 .ak-card {
   box-shadow:none !important;
   background:#ffffff !important;
 }
 
-/* 所有按钮和悬停 */
 button,
 .ak-button,
 .ak-country-more,
@@ -1416,7 +1408,6 @@ button,
   box-shadow:none !important;
 }
 
-/* i悬停详情 */
 .ak-popover,
 .ak-tooltip,
 .ak-info-popup {
@@ -1424,7 +1415,6 @@ button,
   box-shadow:none !important;
 }
 
-/* 详情页 */
 .ak-chart,
 .ak-panel,
 .ak-tabs,
@@ -1435,14 +1425,12 @@ button,
   box-shadow:none !important;
 }
 
-/* 时间选择区域 */
 .ak-tabs *,
 .ak-tab * {
   background:#ffffff !important;
   box-shadow:none !important;
 }
 
-/* 进度条 */
 .ak-progress {
   background:#eeeeee !important;
   box-shadow:none !important;
@@ -1452,7 +1440,6 @@ button,
   box-shadow:none !important;
 }
 
-/* footer */
 footer,
 .footer,
 [class*="footer"] {
@@ -1461,7 +1448,6 @@ footer,
   box-shadow:none !important;
 }
 
-/* Strong 4px rules for homepage cards, progress, summary, popup */
 .ak-card,
 [class*="card"],
 .ak-summary-bar,
@@ -1480,11 +1466,6 @@ footer,
 }
 
 
-/* ============================================
-   1.1.18 CLEAN FINAL: 统一圆角 + 卡片头部精确对齐
-   ============================================ */
-
-/* 全局强制 4px 圆角（精简后唯一来源） */
 .ak-card,
 .ak-summary-bar,
 .ak-progress,
@@ -1498,7 +1479,6 @@ footer,
   border-radius: 4px !important;
 }
 
-/* 国家/地区图标正方形 4px */
 .ak-region {
   width: 26px !important;
   height: 26px !important;
@@ -1514,20 +1494,18 @@ footer,
   text-align: left !important;
 }
 
-/* 标题行（国家图标 + 系统图标 + 名称） */
 .ak-title-line {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 0.55rem !important;
-  padding-top: 1px !important;        /* 关键：向上微调，与 i 图标水平对齐 */
+  padding-top: 1px !important;        
   padding-left: 1rem !important;
   padding-right: 3.8rem !important;
   min-height: 28px !important;
   font-size: 1.15em !important;
 }
 
-/* i 悬停图标 - 稳定位置（用户确认满意） */
 .ak-info {
   position: absolute !important;
   top: 4px !important;
@@ -1536,13 +1514,11 @@ footer,
   height: 28px !important;
 }
 
-/* Ping 选中效果保持一致圆角 */
 .ak-ping-item.active {
   border-radius: 4px !important;
   box-shadow: 5px 5px 12px #cfd6dc, -5px -5px 12px #fdffff !important;
 }
 
-/* === 1.1.20 Footer fix: remove unwanted horizontal line above copyright === */
 .ui.inverted.footer.segment,
 footer,
 .footer,
@@ -1551,15 +1527,11 @@ footer,
   border: none !important;
 }
 
-/**
- * Nezha Minimal Clean v4
- */
 
 body {
   background-color: #ffffff !important;
 }
 
-/* 卡片 */
 .ak-card,
 .ak-summary-bar {
   background-color: #ffffff !important;
@@ -1568,7 +1540,6 @@ body {
   box-shadow: none !important;
 }
 
-/* 进度条 */
 .ak-progress {
   background: #f5f5f5 !important;
   border: 1px solid #cccccc !important;
@@ -1581,7 +1552,6 @@ body {
   box-shadow: none !important;
 }
 
-/* 时间范围按钮强制无背景 */
 .ak-segmented button,
 .ak-segmented-chart button {
   background-color: transparent !important;
@@ -1596,7 +1566,6 @@ body {
   box-shadow: none !important;
 }
 
-/* 返回首页 */
 .ak-back {
   background-color: transparent !important;
   border: none !important;
@@ -1605,7 +1574,6 @@ body {
   color: #222222 !important;
 }
 
-/* 顶部导航 */
 .ui.menu.nb-menu,
 .ak-nav-inner {
   background-color: transparent !important;
@@ -1619,7 +1587,6 @@ body {
   box-shadow: none !important;
 }
 
-/* 容器间隙 */
 .ak-card-grid,
 #homeView,
 .ak-view,
@@ -1632,10 +1599,6 @@ body {
   box-shadow: none !important;
 }
 
-
-/* v5 pure clean overrides */
-
-/* 去除首页顶部首页/登录区域蓝色背景 */
 header,
 nav,
 .ui.menu,
@@ -1649,7 +1612,6 @@ nav,
   border-color: #dddddd !important;
 }
 
-/* VPS 卡片之间、汇总条之间全部纯色 */
 .ak-card,
 .ak-summary-bar,
 .ak-card-grid,
@@ -1660,7 +1622,6 @@ nav,
   box-shadow: none !important;
 }
 
-/* VPS 卡片右上角 i 悬停弹层 */
 .ak-card .info-popup,
 .ak-card .server-info,
 .ak-card [class*="popover"],
@@ -1671,7 +1632,6 @@ nav,
   border: 1px solid #dddddd !important;
 }
 
-/* 详情页整体纯色 */
 .ak-detail,
 .ak-detail *,
 .ak-chart,
@@ -1689,7 +1649,6 @@ nav,
   background: #ffffff !important;
 }
 
-/* 负载、延迟、时间范围按钮区域 */
 .ak-segmented,
 .ak-segmented-chart,
 .ak-segmented button,
@@ -1699,7 +1658,6 @@ nav,
   box-shadow: none !important;
 }
 
-/* 直角悬停效果 */
 .ak-card:hover,
 .ak-summary-bar:hover,
 .ak-detail:hover {
@@ -1707,11 +1665,6 @@ nav,
   box-shadow: none !important;
 }
 
-
-
-/* Nezha Minimal 1.1.20 clean overrides */
-
-/* 纯色扁平化 */
 body,
 #app,
 .ui.container,
@@ -1727,7 +1680,6 @@ body,
   border-radius: 4px !important;
 }
 
-/* VPS 标题行水平对齐 */
 .ak-card-header {
   text-align: left !important;
   text-shadow: none !important;
@@ -1740,14 +1692,12 @@ body,
   padding-right: 2rem !important;
 }
 
-/* i 悬停图标与国家/VPS名称同一水平线 */
 .ak-info {
   top: 0 !important;
   right: 12px !important;
   transform: translateY(0) !important;
 }
 
-/* i 弹窗 */
 .ak-card .info-popup,
 .ak-card .server-info,
 .ak-card [class*="popover"],

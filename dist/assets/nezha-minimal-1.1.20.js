@@ -165,9 +165,7 @@
   }
 
   async function loadExchangeRates() {
-    // 采用“先显示加载态，后更新真实数据”的策略：
-    // - renderCostSummary() 在 exchangeRatesLoaded=false 时显示“成本计算中...”，避免显示 fallback 价格导致视觉跳变。
-    // - 仅在 finally 里把 exchangeRatesLoaded 设为 true 并 setSummaryBars()，实现平滑更新。
+
     try {
       const resp = await fetch("https://open.er-api.com/v6/latest/CNY", { 
         cache: "no-store" 
@@ -417,8 +415,7 @@
         <div class="ak-card-grid">${cards}</div>
       </div>`;
     }).join("");
-    // 注意：这里不再调用 updateHomeMetrics()，因为刚刚用 renderNodeCard + renderSummaryBars 完整渲染了初始值。
-    // updateHomeMetrics 只在“已有卡片”的快速刷新路径中使用，避免重复 setSummaryBars 导致价格条多余更新。
+
   }
 
   function renderNodeCard(node) {
@@ -1051,9 +1048,6 @@
   }
 
   function normalizePingRecords(data) {
-    // Komari 1.2.6 ping records compatibility
-    // Old: {records:[{task_id,time,value}],tasks:[]}
-    // New: {data:{records:...}}, {records:{task_id:[...]}} or grouped records
     const source = data && data.data ? data.data : (data || {});
     let records = [];
     if (Array.isArray(source.records)) {
@@ -1080,8 +1074,6 @@
       if (!time) return;
       if (!grouped.has(time)) grouped.set(time, { time });
       const value = Number(rec.value ?? rec.latency ?? rec.delay ?? rec.ping);
-      // 严格过滤：小于 1ms 的值视为无效（高丢包场景下 0/极低值通常是测量失败/超时）
-      // 这样即使是历史数据里的 0 尖峰也会被过滤成缺口，曲线更干净
       grouped.get(time)[String(id)] = Number.isFinite(value) && value >= 1 ? value : null;
     });
     const rows = Array.from(grouped.values()).sort(sortByTime);
@@ -1201,8 +1193,6 @@
     const value = numberOrNull(row[series.key]);
     if (value == null) return null;
 
-    // 针对 Ping 任务（key 是纯数字，如 "1", "3"），额外把 0 也视为无效
-    // 防止历史数据或某些聚合场景下 0 尖峰漏网
     if (/^\d+$/.test(String(series.key)) && value === 0) {
       return null;
     }
@@ -1261,7 +1251,6 @@
 
   function navigate(route) {
     const normalized = normalizeRoute(route);
-    // 点击“首页”时，如果有国家筛选，则清除筛选并强制刷新卡片
     if (normalized === "/" && state.activeCountryFilter) {
       state.activeCountryFilter = null;
       if (els.home) els.home.innerHTML = '';
@@ -1278,7 +1267,7 @@
     } else {
       state.activeCountryFilter = code;
     }
-    if (els.home) els.home.innerHTML = ''; // 强制重新渲染卡片列表（绕过增量更新路径）
+    if (els.home) els.home.innerHTML = ''; 
     render();
   }
 
@@ -1481,7 +1470,6 @@
   }
 
   function renderCostSummary() {
-    // 汇率未加载完成前显示加载态，避免显示 fallback 价格导致“跳变”
     if (!state.exchangeRatesLoaded) {
       return `<span class="ak-summary-bar ak-cost-summary" title="节点成本汇总（已换算为人民币）\n正在根据实时汇率计算成本...">
         <span>成本计算中...</span>
@@ -1529,12 +1517,11 @@
     if (remainingDays <= 0) return 0;
 
     const rate = currencyToCnyRate(node.currency);
-    const dailyCost = (price * rate) / cycle;   // 每天成本
+    const dailyCost = (price * rate) / cycle;   
     return remainingDays * dailyCost;
   }
 
   function currencyToCnyRate(currency) {
-    // Komari 未填写货币时默认按 USD 处理，而不是 CNY
     if (!currency || !String(currency).trim()) {
       currency = "USD";
     }
@@ -1576,7 +1563,6 @@
     const active = state.activeCountryFilter;
     const maxVisible = 5;
 
-    // 紧凑显示内容：≤5个完整显示，>5个显示前5个 +N
     let compactHTML = '';
     const visibleCount = Math.min(items.length, maxVisible);
     for (let i = 0; i < visibleCount; i++) {
@@ -1592,7 +1578,6 @@
     }
     const content = items.length ? compactHTML : "<span>-</span>";
 
-    // 展开列表（hover时显示全部）
     const expandedContent = items.length ? items.map(function (item) {
       const isActive = active === item.code;
       return `<button type="button" class="ak-country-item expanded${isActive ? " active" : ""}" data-filter-country="${escapeAttr(item.code)}">
